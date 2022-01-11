@@ -44,15 +44,15 @@ Untuk mendeteksi outliers kita bisa menggunakan beberapa teknik, antara lain:
 
 Sebelumnya, untuk mengetahui apakah ada outliers pada data kita, kita bisa melakukan teknik visualisasi Boxplot. Maka dari itu kita akan melakukan visualisasi terlebih dahulu.
 
-![Gambar3](https://drive.google.com/uc?export=view&id=1_N9nNYKYkUpTqr4O49Q38SuKfsG6Bvrk)
+![Gambar3](https://camo.githubusercontent.com/6db15b998f6de510b4dbf243ff2d5a338a94fd9abd64c355dd1b6a8dbd78152d/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4e396e4e594b596b5570547172344f343951333853754b667347364276726b)
 
-![Gambar4](https://drive.google.com/uc?export=view&id=1_Nf1LobS-KnwynpYl9xOXpI-wSfS2mWT)
+![Gambar4](https://camo.githubusercontent.com/5f0fbbfe7db212812996cdba784dcace8b02726020b15960ec6c2ae23b249d38/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4e66314c6f62532d4b6e77796e70596c39784f5870492d77536653326d5754)
 
 Dari visualasi boxplot diatas kita bisa lihat bahwa dataset kita memiliki outliers pada column 'Volume'. Kita bisa saja menghapusnya tetapi karena ini merupakan dataset yang berpengaruh terhadap urutan data, maka jika kita hilangkan akan menghasilkan data yang hilang. Oleh karena itu kita akan menggantinya dengan nilai Median.
 
 Untuk lebih memastikan adanya outliers pada data kita, kita bisa melihat histogram pada data. Berikut adalah output histogram 'Volume' pada data:
 
-![Gambar5](https://drive.google.com/uc?export=view&id=1_Sigp12dzu7yBaGOTfof9FXph1dU7ACG)
+![Gambar5](https://camo.githubusercontent.com/3a5859ce5912c9f4027e0396cb2b9d1f37f88a1ee9f6df2804fe027931a16d97/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f536967703132647a7537794261474f54666f66394658706831645537414347)
 
 Jika kita lihat pada [03] bagian histogram ia **menyatakan jika data pada histogram terdistribusi ke arah kiri itu menunjukan adanya outliers pada data.** Pada histogram volume kita, kita bisa lihat bahwa data terdistribusi ke arah kiri yang mengindikasikan adanya outliers pada data.
 
@@ -89,9 +89,9 @@ Dari output diatas kita bisa lihat bahwa data pada column 'Volume' memiliki outl
 
 ### Data Loading
 
-Pada tahap pertama seperti biasa kita akan import semua library yang dibutuhkan dan melakukan data loading. Pada project ini saya akan melakukan data loading menggunakan url yang didapatkan pada link berikut[YahooFinance]. Setelah melakukan loading kita akan melihat output sebagai berikut:
+Pada tahap pertama seperti biasa kita akan import semua library yang dibutuhkan dan melakukan data loading. Pada project ini saya akan melakukan data loading menggunakan url yang didapatkan pada link berikut [YahooFinance]. Setelah melakukan loading kita akan melihat output sebagai berikut:
 
-![Gambar1](https://drive.google.com/uc?export=view&id=1_LcC9aUqAaLaUUCQuHW40qWTNIL8x-ty)
+![Gambar1](https://camo.githubusercontent.com/7ceb46cba92cb4b1630c68ff4aed47587609d795c8df890eae786c323a2e0bfd/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4c63433961557141614c615555435175485734307157544e494c38782d7479)
 
 Dari gambar diatas kita bisa lihat bahwa terdapat tanggal-tanggal yang hilang seperti tanggal 5 dan 6 January 2019. Jika kita lihat pada kalender, tanggal-tanggal yang hilang adalah tanggal mereka tidak buka (open) yaitu pada hari Sabtu dan Minggu. Selanjutnya kita bisa lihat informasi mengenai data pada dataset ini menggunakan code berikut:
 
@@ -101,7 +101,7 @@ df.info()
 
 Output:
 
-![Gambar2](https://drive.google.com/uc?export=view&id=1_MR9N8LX2hQF3UK-r5gpUdMMWrBrSn7m)
+![Gambar2](https://camo.githubusercontent.com/1ca87a6380679a316085772e4ee1558b2dd4e37f217b84e034a9aace7030723b/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4d52394e384c583268514633554b2d7235677055644d4d57724272536e376d)
 
 Kita bisa lihat bahwa dataset kita tidak memiliki null data. Data type untuk dataset ada tiga yaitu:
 
@@ -195,9 +195,9 @@ Sumber: https://www.khoiri.com/2020/12/pengertian-dan-cara-menghitung-mean-squar
 
 Hasil evaluasi adalah sebagai berikut:
 
-![Gambar10](https://drive.google.com/uc?export=view&id=1nkyPomo0bHViHzoLQcScYjg859XHwXnj)
+![Gambar10](https://camo.githubusercontent.com/0e7eb05d3ce601b45218310ac7eb793c8298254805eb6a74b3d23896bf99b8ce/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d316e6b79506f6d6f3062485669487a6f4c51635363596a67383539584877586e6a)
 
-![Gambar11](https://drive.google.com/uc?export=view&id=1aGzMijpbNiR4hghggvul-Ls1PG_kSMRj)
+![Gambar11](https://camo.githubusercontent.com/a39d7f137c186dad1ed118e657dfe9e4f789d68f52b1d7d3ee2200d509e610c7/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3161477a4d696a70624e695234686768676776756c2d4c733150475f6b534d526a)
 
 Dari grafik diatas kita bisa simpulkan bahwa model dengan algoritma KNN dan KNN yang sudah di fine tuning adalah model yang memiliki kinerja yang paling bagus, keduanya memiliki performa yang sama. Oleh karena itu kita bisa mengambil model KNNTune1 dan KNN, tetapi saya akan mengambil KNNTune1.
 
