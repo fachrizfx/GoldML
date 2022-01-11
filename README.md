@@ -113,7 +113,7 @@ Kita bisa lihat bahwa dataset kita tidak memiliki null data. Data type untuk dat
 
 Setelah kita menangani outliers kita dapat melanjutkan ke tahap Data Analysis menggunakan Multivariate Analysis. Berikut adalah gambar Pairplot yang menunjukan relasi pasangan antar data dalam dataset.
 
-![Gambar6](https://drive.google.com/uc?export=view&id=1_uqoaQocicDwNsjy_Cc1swebAn0GT4Zj)
+![Gambar6](https://camo.githubusercontent.com/23ce454b84a285a4b9dbc55774f8401750df6704783ef34f53f64f7a1cce833a/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f75716f61516f63696344774e736a795f43633173776562416e304754345a6a)
 
 Dari grafik diatas kita bisa lihat bahwa column 'Open', 'High', dan 'Low' memiliki korelasi yang tinggi dengan output variabel kita, yaitu 'Adj Close'. Maka kita bisa drop column 'Volume', dan 'Close'. Alasannya adalah column Volume memiliki korelasi yang rendah sekali, dan column close tidak berguna karena outcome variabel kita adalah Adj Close . Perbedaan keduanya ada pada bagian variabel-variabel di atas.
 
