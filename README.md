@@ -1,4 +1,5 @@
-# Laporan Proyek Machine Learning - Fachriz
+# Laporan Proyek Machine Learning 
+This project is a part of Dicoding's Applied Machine Learning Class Project.
 
 ## Domain Proyek
 
