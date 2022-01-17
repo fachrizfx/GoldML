@@ -1,5 +1,5 @@
 # Laporan Proyek Machine Learning 
-This project is a part of Dicoding's Applied Machine Learning Class Project. Project resources that have been used to help build this model are listed below in the reference area. Please cite this GitHub Repository page if you used our model as a guidance reference.
+This project is a part of Dicoding's Applied Machine Learning Class Project. Project resources that have been used to help build this model are listed below in the reference area. Please cite this GitHub Repository page if you used our model as a guidance reference. Images that have been used in this markdown may not be rendered due to one or another reason, please try refreshing the page to see the image rendered.
 
 ## Domain Proyek
 
