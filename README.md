@@ -1,5 +1,5 @@
 # Laporan Proyek Machine Learning 
-This project is a part of Dicoding's Applied Machine Learning Class Project. Project resources that have been used to help build this model are listed below in the reference area. Please cite this GitHub Repository page if you used our model as a guidance reference. Images that have been used in this markdown may not be rendered due to one or another reason, please try refreshing the page to see the image rendered.
+Project resources that have been used to help build this model are listed below in the reference area. Please cite this GitHub Repository page if you used our model as a guidance reference. Images that have been used in this markdown may not be rendered due to one or another reason, please try refreshing the page to see the image rendered.
 
 This model only needs one input from the user, which is the Open Price for today's gold price. The currency that is used in this model is AUD (Australian Dollar) there for this model can only be used to predict Australian Gold Price and not will be working for other country's gold prices.
 
