@@ -213,3 +213,30 @@ After completing all the processes, now we can answer the problem in the problem
 
 - What is the average daily gold price increase?
     The average daily increase in gold prices in our data is 0.043%. The percentage increase is very small, this is because there are several values ​​that have decreased. The decline in the price of gold is a natural thing / normal.
+
+**All parts of the document are translated to English**
+
+# Reference List
+
+<br />[[yahoofinance]]ETFS Physical Gold (GOLD.AX) Stock Historical Prices & Data. (n.d.). Yahoo Finance. Retrieved January 10, 2022, from https://finance.yahoo.com/quote/GOLD.AX/history?period1=1546300800&period2=1641772800&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
+<br />[[01]]Cara Aman dan Waktu yang Tepat untuk Investasi Emas. (2021, October 2). CNN Indonesia. Retrieved January 10, 2022, from https://www.cnnindonesia.com/ekonomi/20210928113408-97-700375/cara-aman-dan-waktu-yang-tepat-untuk-investasi-emas
+<br />[[02]]Rodo, F. (2019, December 18). Harga Emas Terkait Volume Perdagangan. Indo Gold. Retrieved January 10, 2022, from https://blog.indogold.id/harga-emas-terkait-volume-perdagangan/
+<br />[[03]]Magaga, A. (2021, April 5). Identifying, Cleaning and replacing outliers | Titanic Dataset. Medium. Retrieved January 10, 2022, from https://medium.com/analytics-vidhya/identifying-cleaning-and-replacing-outliers-titanic-dataset-20182a062893
+<br />[[04]]Scikit Learn. (n.d.). sklearn.neighbors.KNeighborsRegres. Retrieved January 10, 2022, from https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html
+<br />[[05]]K. (2020, December 22). Pengertian dan Cara Menghitung Mean Squared Error MSE. Khoiri. Retrieved January 10, 2022, from https://www.khoiri.com/2020/12/pengertian-dan-cara-menghitung-mean-squared-error-mse.html
+<br />[[06]]Kumar, A. (2020, July 27). MinMaxScaler vs StandardScaler – Python Examples. Vitalflux. Retrieved January 10, 2022, from https://vitalflux.com/minmaxscaler-standardscaler-python-examples/
+<br />[[07]]Hardesty, L. (2017, April 17). Explained: Neural networks. MIT News. Retrieved January 10, 2022, from https://news.mit.edu/2017/explained-neural-networks-deep-learning-0414
+<br />[[kaggle]]Siddhartha, M. (2021, July 20). Gold Prices Prediction Dataset (Version 1) [Data for this study is collected from November 18th 2011 to January 1st 2019 from various sources. The data has 1718 rows in total and 80 columns in total. Data for attributes, such as Oil Price, Standard and Poor’s (S&P) 500 index, Dow Jones Index US Bond rates (10 years), Euro USD exchange rates, prices of precious metals Silver and Platinum and other metals such as Palladium and Rhodium, prices of US Dollar Index, Eldorado Gold Corporation and Gold Miners ETF were gathered. The dataset has 1718 rows in total and 80 columns in total. Data for attributes, such as Oil Price, Standard and Poor’s (S&P) 500 index, Dow Jones Index US Bond rates (10 years), Euro USD exchange rates, prices of precious metals Silver and Platinum and other metals such as Palladium and Rhodium, prices of US Dollar Index, Eldorado Gold Corporation and Gold Miners ETF were gathered. The historical data of Gold ETF fetched from Yahoo finance has 7 columns, Date, Open, High, Low, Close, Adjusted Close, and Volume, the difference between Adjusted Close and Close is that the closing price of a stock is the price of that stock at the close of the trading day. Whereas the adjusted closing price takes into account factors such as dividends, stock splits, and new stock offerings to determine a value. So, Adjusted Close is the outcome variable which is the value you have to predict.]. Kaggle. https://www.kaggle.com/sid321axn/gold-price-prediction-dataset
+
+<br />
+<br />
+
+[yahoofinance]: https://finance.yahoo.com/quote/GOLD.AX/history?period1=1546300800&period2=1641772800&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
+[01]: https://www.cnnindonesia.com/ekonomi/20210928113408-97-700375/cara-aman-dan-waktu-yang-tepat-untuk-investasi-emas#:~:text=Emas%20dianggap%20salah%20satu%20instrumen,namun%20penurunannya%20tidak%20terlalu%20tajam.
+[02]: https://blog.indogold.id/harga-emas-terkait-volume-perdagangan/
+[03]: https://medium.com/analytics-vidhya/identifying-cleaning-and-replacing-outliers-titanic-dataset-20182a062893
+[04]: https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html
+[05]: https://www.khoiri.com/2020/12/pengertian-dan-cara-menghitung-mean-squared-error-mse.html#:~:text=Cara%20menghitung%20Mean%20Squared%20Error%20(MSE)%20adalah%20melakukan%20pengurangan%20nilai,dengan%20banyaknya%20data%20yang%20ada.
+[06]: https://vitalflux.com/minmaxscaler-standardscaler-python-examples/#:~:text=The%20MinMaxscaler%20is%20a%20type,range%20from%20min%20to%20max.
+[07]: https://news.mit.edu/2017/explained-neural-networks-deep-learning-0414
+[kaggle]: https://www.kaggle.com/sid321axn/gold-price-prediction-dataset
