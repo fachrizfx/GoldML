@@ -153,13 +153,13 @@ As mentioned in the Solution Statement section, this model will solve the regres
 
 ### Development
 
-As already mentioned, I will be using the K-Nearest Neighbor, Random Forest, Boosting Algorithm, and Neural Network algorithms. In the first cell I will create a DataFrame for the evaluation stage later. In the development stage I will use the GridSearchCV technique from the Scikit Learn Library on the KNN, Random Forest, and Boosting Algorithm models, to find the right hyperparamter.
+As already mentioned, I will be using the K-Nearest Neighbor, Random Forest, Boosting Algorithm, and Neural Network algorithms. In the first cell I will create a DataFrame for the evaluation stage later. In the development stage I will use the GridSearchCV technique from the Scikit Learn Library on the KNN, Random Forest, and Boosting Algorithm models, to find the right hyperparameters.
 
 #### KNN
 
 The KNN algorithm works by determining the number of neighbors denoted by K, then the algorithm will calculate the distance between the new data and K data points. Next is the algorithm will take a number of nearest K values, then determine the class of the new data.
 
-Judging from [04], the KNN algorithm by default uses the Minskowski metric, but there are also other metrics, namely Euclidean, and Manhattan.
+Judging from [04], the KNN algorithm by default uses the Minkowski metric, but there are also other metrics, namely Euclidean, and Manhattan.
 
 The Euclidean metric calculates the distance as the square root of the sum of the differences in squares between points a and b. While the Euclidean metric is a generalization of Euclidean and Manhattan distance. Then the Manhattan metric is calculated by calculating the sum of the absolute values ​​of the two vectors. All of this can be written as follows:
 
@@ -167,11 +167,11 @@ The Euclidean metric calculates the distance as the square root of the sum of th
 
 Source: https://saedsayad.com/k_nearest_neighbors_reg.htm
 
-If we look at the output of the '.best*params*' function, we can see that the correct hyperparamters for this KNN model are 'brute' for algorithms, 'minkowski' for metrics, 10 for n_neighbors. Therefore, I will use the KNN model for these parameters. The 'n_neighbors' parameter determines the number of K values ​​in our model. The next parameter is 'algorithm', in this model I use the 'Brute' algorithm. This algorithm relies on computational power, the way it works is by trying every possibility so as to minimize the number of errors.
+If we look at the output of the '.best*params*' function, we can see that the correct hyperparameters for this KNN model are 'brute' for algorithms, 'Minkowski' for metrics, 10 for n_neighbors. Therefore, I will use the KNN model for these parameters. The 'n_neighbors' parameter determines the number of K values ​​in our model. The next parameter is 'algorithm', in this model I use the 'Brute' algorithm. This algorithm relies on computational power, the way it works is by trying every possibility so as to minimize the number of errors.
 
 #### Random Forest
 
-The random forensics algorithm is one of the supervised learning algorithms. It belongs to the category of ensemble learning. There are two techniques for creating an ensemble model, namely bagging and boosting. The way it works is quite simple, namely, first random data bagging will be carried out, after that it will be input into the decision tree algorithm. For the final prediction of the model, the average prediction of all trees in the ensemble model will be calculated, the final prediction in this way only applies to the case of regression. In the case of classification, the final prediction will be taken from the most predictions in the entire tree.
+The random forensics algorithm is one of the supervised learning algorithms. It belongs to the category of ensemble learning. There are two techniques for creating an ensemble model, namely bagging and boosting. The way it works is quite simple, namely, first random data bagging will be carried out, after that, it will be input into the decision tree algorithm. For the final prediction of the model, the average prediction of all trees in the ensemble model will be calculated, the final prediction in this way only applies to the case of regression. In the case of classification, the final prediction will be taken from the most predictions in the entire tree.
 
 Based on the GridSearch output the correct parameters are None for 'max_depth', and 100 for 'n_estimators'. The parameter 'n_estimators' is the number of trees in the forest, the more trees the better the model performance. One drawback of a high number of 'n_estimators' is that it makes code slower.
 
@@ -179,17 +179,17 @@ Based on the GridSearch output the correct parameters are None for 'max_depth', 
 
 The boosting algorithm is the same as the random forest, which is both included in the ensemble category, the difference is that this algorithm creates an ensemble model by means of boosting rather than bagging. In this ensemble model, the models will be trained sequentially rather than in parallel. The way it works is also quite simple, namely by building a model from the data, then creating a second model which aims to correct the errors of the first model. The model will continue to be added until the training data stage is well predicted or has reached the maximum model limit.
 
-The output of GridSearch shows that the correct hyperparamter is 0.5 for 'learning_rate', and 76 for 'n_estimators'. The parameter 'n_estimators' as described in the Random Forest section is the number of trees in the forest. The larger the number the better the model performance, the downside is that the higher the number of trees the slower the code. The next parameter is 'learning_rate', this parameter controls the loss function which will calculate the weight of the existing base models, so that the right amount of learning_rate will give more performance.
+The output of GridSearch shows that the correct hyperparameters is 0.5 for 'learning_rate', and 76 for 'n_estimators'. The parameter 'n_estimators' as described in the Random Forest section is the number of trees in the forest. The larger the number the better the model performance, the downside is that the higher the number of trees the slower the code. The next parameter is 'learning_rate', this parameter controls the loss function which will calculate the weight of the existing base models, so that the right amount of learning_rate will give more performance.
 
 #### Neural Network
 
-Neural Network is one of the popular models used. This model works with an input layer, and an output layer, but there is also a hidden layer. A more complete discussion will not be discussed here, but can be seen at the following link: [07]. These layers can have hundreds of thousands of parameters and even millions of parameters. But for this model to work, the layers will look for patterns in the data.
+Neural Network is one of the popular models used. This model works with an input layer and an output layer, but there is also a hidden layer. A more complete discussion will not be discussed here but can be seen at the following link: [07]. These layers can have hundreds of thousands of parameters and even millions of parameters. But for this model to work, the layers will look for patterns in the data.
 
 In the Neural Network model, I do not use the GridSearch technique. So the parameters that I change in the fine-tuned model are only the 'learning_rate' parameter in the optimizer, and the number of 'epochs' in the .fit() function. This is so that I can see the difference in performance during training, whether the distance between the original data is close or far enough. Epoch is training a Neural Network model with the same training data during a specified cycle. Now the 'epoch' parameter in the .fit() function determines the number of cycles to train the model.
 
 ## Evaluation
 
-In the metric section, I will use MSE, in this case I choose the MSE metric. The reason I chose this metric is because MAE is a linear score, which means that individual differences between data will be given equal weight in the average. Although according to some sources it is better to choose the RMSE metric, I still choose the MSE metric. Based on [05] MSE works by subtracting the actual data with the predicted data and the results are squared (squared) and then totaled and divided by the number of data.
+In the metric section, I will use MSE, in this case, I choose the MSE metric. The reason I chose this metric is that MAE is a linear score, which means that individual differences between data will be given equal weight in the average. Although according to some sources it is better to choose the RMSE metric, I still choose the MSE metric. Based on [05] MSE works by subtracting the actual data with the predicted data and the results are squared (squared) and then totaled and divided by the number of data.
 
 ![Image9](https://1.bp.blogspot.com/-BhCZ4B8uQqI/X-HjGU2kcsI/AAAAAAAACkQ/EdNE0ynOwDIR9RYD_uxRMhps2DFFs5jgQCNcBGAsYHQ/s364/formula%2BMSE.jpg)
 
@@ -213,30 +213,3 @@ After completing all the processes, now we can answer the problem in the problem
 
 - What is the average daily gold price increase?
     The average daily increase in gold prices in our data is 0.043%. The percentage increase is very small, this is because there are several values ​​that have decreased. The decline in the price of gold is a natural thing / normal.
-
-**All parts of this report are translated to English**
-
-## Reference
-
-<br />[[yahoofinance]]ETFS Physical Gold (GOLD.AX) Stock Historical Prices & Data. (n.d.). Yahoo Finance. Retrieved January 10, 2022, from https://finance.yahoo.com/quote/GOLD.AX/history?period1=1546300800&period2=1641772800&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
-<br />[[01]]Cara Aman dan Waktu yang Tepat untuk Investasi Emas. (2021, October 2). CNN Indonesia. Retrieved January 10, 2022, from https://www.cnnindonesia.com/ekonomi/20210928113408-97-700375/cara-aman-dan-waktu-yang-tepat-untuk-investasi-emas
-<br />[[02]]Rodo, F. (2019, December 18). Harga Emas Terkait Volume Perdagangan. Indo Gold. Retrieved January 10, 2022, from https://blog.indogold.id/harga-emas-terkait-volume-perdagangan/
-<br />[[03]]Magaga, A. (2021, April 5). Identifying, Cleaning and replacing outliers | Titanic Dataset. Medium. Retrieved January 10, 2022, from https://medium.com/analytics-vidhya/identifying-cleaning-and-replacing-outliers-titanic-dataset-20182a062893
-<br />[[04]]Scikit Learn. (n.d.). sklearn.neighbors.KNeighborsRegres. Retrieved January 10, 2022, from https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html
-<br />[[05]]K. (2020, December 22). Pengertian dan Cara Menghitung Mean Squared Error MSE. Khoiri. Retrieved January 10, 2022, from https://www.khoiri.com/2020/12/pengertian-dan-cara-menghitung-mean-squared-error-mse.html
-<br />[[06]]Kumar, A. (2020, July 27). MinMaxScaler vs StandardScaler – Python Examples. Vitalflux. Retrieved January 10, 2022, from https://vitalflux.com/minmaxscaler-standardscaler-python-examples/
-<br />[[07]]Hardesty, L. (2017, April 17). Explained: Neural networks. MIT News. Retrieved January 10, 2022, from https://news.mit.edu/2017/explained-neural-networks-deep-learning-0414
-<br />[[kaggle]]Siddhartha, M. (2021, July 20). Gold Prices Prediction Dataset (Version 1) [Data for this study is collected from November 18th 2011 to January 1st 2019 from various sources. The data has 1718 rows in total and 80 columns in total. Data for attributes, such as Oil Price, Standard and Poor’s (S&P) 500 index, Dow Jones Index US Bond rates (10 years), Euro USD exchange rates, prices of precious metals Silver and Platinum and other metals such as Palladium and Rhodium, prices of US Dollar Index, Eldorado Gold Corporation and Gold Miners ETF were gathered. The dataset has 1718 rows in total and 80 columns in total. Data for attributes, such as Oil Price, Standard and Poor’s (S&P) 500 index, Dow Jones Index US Bond rates (10 years), Euro USD exchange rates, prices of precious metals Silver and Platinum and other metals such as Palladium and Rhodium, prices of US Dollar Index, Eldorado Gold Corporation and Gold Miners ETF were gathered. The historical data of Gold ETF fetched from Yahoo finance has 7 columns, Date, Open, High, Low, Close, Adjusted Close, and Volume, the difference between Adjusted Close and Close is that the closing price of a stock is the price of that stock at the close of the trading day. Whereas the adjusted closing price takes into account factors such as dividends, stock splits, and new stock offerings to determine a value. So, Adjusted Close is the outcome variable which is the value you have to predict.]. Kaggle. https://www.kaggle.com/sid321axn/gold-price-prediction-dataset
-
-<br />
-<br />
-
-[yahoofinance]: https://finance.yahoo.com/quote/GOLD.AX/history?period1=1546300800&period2=1641772800&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
-[01]: https://www.cnnindonesia.com/ekonomi/20210928113408-97-700375/cara-aman-dan-waktu-yang-tepat-untuk-investasi-emas#:~:text=Emas%20dianggap%20salah%20satu%20instrumen,namun%20penurunannya%20tidak%20terlalu%20tajam.
-[02]: https://blog.indogold.id/harga-emas-terkait-volume-perdagangan/
-[03]: https://medium.com/analytics-vidhya/identifying-cleaning-and-replacing-outliers-titanic-dataset-20182a062893
-[04]: https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsRegressor.html
-[05]: https://www.khoiri.com/2020/12/pengertian-dan-cara-menghitung-mean-squared-error-mse.html#:~:text=Cara%20menghitung%20Mean%20Squared%20Error%20(MSE)%20adalah%20melakukan%20pengurangan%20nilai,dengan%20banyaknya%20data%20yang%20ada.
-[06]: https://vitalflux.com/minmaxscaler-standardscaler-python-examples/#:~:text=The%20MinMaxscaler%20is%20a%20type,range%20from%20min%20to%20max.
-[07]: https://news.mit.edu/2017/explained-neural-networks-deep-learning-0414
-[kaggle]: https://www.kaggle.com/sid321axn/gold-price-prediction-dataset
