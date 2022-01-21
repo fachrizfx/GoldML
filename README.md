@@ -1,222 +1,222 @@
-# Laporan Proyek Machine Learning 
+# Machine Learning Project Report
 Project resources that have been used to help build this model are listed below in the reference area. Please cite this GitHub Repository page if you used our model as a guidance reference. Images that have been used in this markdown may not be rendered due to one or another reason, please try refreshing the page to see the image rendered.
 
-This model only needs one input from the user, which is the Open Price for today's gold price. The currency that is used in this model is AUD (Australian Dollar) there for this model can only be used to predict Australian Gold Price and not will be working for other country's gold prices.
+This model only needs one input from the user, which is the Open Price for today's gold price. The currency that is used in this model is AUD (Australian Dollar) there for this model can only be used to predict Australian Gold prices and not will be working for other country's gold prices.
 
-## Domain Proyek
+## Project Domain
 
-Emas adalah salah satu logam berharga yang digunakan sebagai sebuah bentuk mata uang di beberapa negara. Dikutip dari [01] emas bisa di jadikan investasi yang aman karena memiliki nilai yang stabil. Oleh karena itu, tujuan yang diharapkan adalah kita bisa memprediksi harga emas agar bisa memperoleh beberapa kegunaan seperti memprediksi kapan untuk membeli dan menjual emas.
+Gold is one of the precious metals that is used as a form of currency in several countries. Quoted from [01] gold can be made a safe investment because it has a stable value. Therefore, the expected goal is that we can predict the price of gold in order to obtain several uses such as predicting when to buy and sell gold.
 
 ## Business Understanding
 
 ### Problem Statements
 
-Setelah mengetahui tujuan model, kita bisa membuat model yang menjawab permasalahan-permasalahan seperti berikut:
+After knowing the purpose of the model, we can create a model that answers the following problems:
 
--   Bagaimana persentase kenaikan harga emas dari periode January 2019 hingga 2022?
--   Bagaimana harga emas untuk dikemudian hari?
--   Bagaimana rata-rata kenaikan harga emas setiap hari?
+- What is the percentage increase in gold prices from January 2019 to 2022?
+- How is the gold price for the future?
+- What is the average daily gold price increase?
 
 ### Goals
 
-Untuk menjawab semua permasalahan diatas, kita bisa membuat goal sebagai berikut:
+To answer all the problems above, we can make the following goals:
 
--   Mengetahui pola kenaikan harga emas setiap hari.
--   Membuat model machine learning seakurat mungkin dengan tujuan memprediksi harga emas di kemudian hari.
--   Mengetahui kenaikan harga emas setiap hari berdasarkan pola data historisnya.
+- Knowing the pattern of gold price increases every day.
+- Make machine learning models as accurate as possible with the aim of predicting gold prices in the future.
+- Knowing the increase in gold prices every day based on historical data patterns.
 
-    ### Solution statements
+### Solution statements
 
-    -   Menggunakan algoritma K-Nearest Neighbor, Random Forest, Boosting Algorithm, dan Neural Network untuk menyelesaikan masalah regresi.
-    -   Melakukan hyperparameter tuning agar memiliki performa lebih baik
-    -   Mengevaluasi model dengan metrik MSE, RMSE, atau MAE
-    -   Menggunakan fungsi pct_change() untuk mengetahui kenaikan pada data
+- Using K-Nearest Neighbor, Random Forest, Boosting Algorithm, and Neural Network algorithms to solve regression problems.
+- Perform hyperparameter tuning for better performance
+- Evaluate models with MSE, RMSE or MAE metrics
+- Using the pct_change() function to find increments in data
 
 ## Data Understanding
 
-Dataset yang akan kita gunakan ini di dapatkan dari Yahoo Finance. Dataset ini berisi data historis harian harga emas dari tanggal Jan 02, 2019 sampai hari model ini dibuat yaitu Jan 10, 2022. Dataset ini memiliki 767 rows dan 7 columns. Dataset dapat diunduh pada link berikut: [YahooFinance].
+The dataset that we will use is obtained from Yahoo Finance. This dataset contains daily historical data on gold prices from Jan 02, 2019, until the day this model was created which is Jan 10, 2022. This dataset has 767 rows and 7 columns. The dataset can be downloaded at the following link: [YahooFinance].
 
-Pada dataset ini saya tidak melakukan reduksi dimensi dengan PCA dikarenakan saya ingin menjadi 'Open' saja yang sebagai data input untuk memprediksi harga emas. Alasanya adalah karena jika kita ingin memprediksi harga emas kita belum tahu nilai 'High' dan 'Low'nya.
+In this dataset I do not do dimension reduction with PCA because I want to be 'Open' only as input data to predict gold prices. The reason is because if we want to predict the price of gold we don't know the 'High' and 'Low' values.
 
-Untuk mendeteksi outliers kita bisa menggunakan beberapa teknik, antara lain:
+To detect outliers we can use several techniques, including:
 
--   Hypothesis Testing
--   Z-score method
--   IQR Method
+- Hypothesis Testing
+- Z-score method
+- IQR Method
 
-Sebelumnya, untuk mengetahui apakah ada outliers pada data kita, kita bisa melakukan teknik visualisasi Boxplot. Maka dari itu kita akan melakukan visualisasi terlebih dahulu.
+Previously, to find out if there are outliers in our data, we can use the Boxplot visualization technique. Therefore we will do the visualization first.
 
 ![Gambar3](https://camo.githubusercontent.com/6db15b998f6de510b4dbf243ff2d5a338a94fd9abd64c355dd1b6a8dbd78152d/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4e396e4e594b596b5570547172344f343951333853754b667347364276726b)
 
 ![Gambar4](https://camo.githubusercontent.com/5f0fbbfe7db212812996cdba784dcace8b02726020b15960ec6c2ae23b249d38/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4e66314c6f62532d4b6e77796e70596c39784f5870492d77536653326d5754)
 
-Dari visualasi boxplot diatas kita bisa lihat bahwa dataset kita memiliki outliers pada column 'Volume'. Kita bisa saja menghapusnya tetapi karena ini merupakan dataset yang berpengaruh terhadap urutan data, maka jika kita hilangkan akan menghasilkan data yang hilang. Oleh karena itu kita akan menggantinya dengan nilai Median.
+From the boxplot visualization above we can see that our dataset has outliers in the 'Volume' column. We can delete it, but because this is a collection of data that affects the order of the data, if we remove it, it will result in missing data. Therefore we will replace them with Median values.
 
-Untuk lebih memastikan adanya outliers pada data kita, kita bisa melihat histogram pada data. Berikut adalah output histogram 'Volume' pada data:
+To ensure that there are outliers in our data, we can look at the histogram of the data. Here is the histogram output of 'Volume' on the data:
 
 ![Gambar5](https://camo.githubusercontent.com/3a5859ce5912c9f4027e0396cb2b9d1f37f88a1ee9f6df2804fe027931a16d97/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f536967703132647a7537794261474f54666f66394658706831645537414347)
 
-Jika kita lihat pada [03] bagian histogram ia **menyatakan jika data pada histogram terdistribusi ke arah kiri itu menunjukan adanya outliers pada data.** Pada histogram volume kita, kita bisa lihat bahwa data terdistribusi ke arah kiri yang mengindikasikan adanya outliers pada data.
+If we look at [03] the histogram section it **states that the data in the histogram is distributed to the left, which shows that there are outliers in the data.** In our volume histogram, we can see that the data is distributed to the left without any outliers in the data.
 
-Dikutip dari [03] tahap untuk memastikan adanya outliers adalah dengan cara melihat skewness value. Skewness dari rentan -1 sampai 1 terbilang normal distribution, dan nilai yang perubahannya sangat besar mengindikasikan adanya outliers. Untuk melihat skewness value kita bisa menuliskan code berikut:
+Quoted from [03] the step to ensure outliers is by looking at the skewness value. Skewness from -1 to 1 is considered a normal distribution, and for values ​​with very large changes, there are outliers. To see the skewness value we can write the following code:
 
 ```
-print('skewness value of Adj Close: ',df['Adj Close'].skew())
-print('skewness value of Volume: ',df['Volume'].skew())
-print('skewness value of Open: ',df['Open'].skew())
-print('skewness value of High: ',df['High'].skew())
-print('skewness value of Low: ',df['Low'].skew())
+print('Skewness value of Adj Close: ',df['Adj Close'].skew())
+print('Volume slope value: ',df['Volume'].kew())
+print('Skewness value of Open: ',df['Open'].skew())
+print('High skewness value: ',df['High'].skew())
+print('Low skewness value: ',df['Low'].kew())
 ```
 
 Output:
 
 ```
-skewness value of Adj Close:  -0.4961562768585715
-skewness value of Volume:  4.457710908666603
-skewness value of Open:  -0.49109950423367865
-skewness value of High:  -0.4754118412774641
-skewness value of Low:  -0.500601583042607
+skewness value of Adj Close: -0,4961562768585715
+Volume slope value: 4.457710908666603
+Open skewness value: -0.49109950423367865
+High skewness value: -0.4754118412774641
+Low skewness value: -0.500601583042607
 ```
 
-Dari output diatas kita bisa lihat bahwa data pada column 'Volume' memiliki outliers, hal ini dikarena ia memiliki nilai 4.8 yang berarti rightly skewed yang mengindikasikan adanya outliers.
+From the output above we can see that the data in the 'Volume' column has outliers, this is because it has a value of 4.8 which means it is skewed which develops outliers.
 
-### Variabel-variabel pada Gold Historical Price dataset adalah sebagai berikut:
+### The variables in the Gold Historical Price dataset are as follows:
 
--   Open : harga emas saat pembukaan hari
--   High : harga maksimal emas pada hari itu
--   Low : harga terendah emas pada hari itu
--   Close : harga emas saat penutupan hari
--   Adj Close : harga emas saat penutupan hari yang disesuaikan oleh beberapa faktor. Untuk lebih lengkapnya bisa dilihat pada link berikut: [Kaggle]
--   Volume : volume perdagangan. Untuk lebih lengkapnya bisa dilihat pada link berikut: [02]
+- Open: the price of gold at the opening of the day
+- High : the maximum price of gold on that day
+- Low : the lowest price of gold on that day
+- Close : the price of gold at the close of the day
+- Adj Close : the price of gold at the close of the day which is adjusted by several factors. For more details, see the following link: [Kaggle]
+- Volume : trading volume. For more details, see the following link: [02]
 
 ### Data Loading
 
-Pada tahap pertama seperti biasa kita akan import semua library yang dibutuhkan dan melakukan data loading. Pada project ini saya akan melakukan data loading menggunakan url yang didapatkan pada link berikut [YahooFinance]. Setelah melakukan loading kita akan melihat output sebagai berikut:
+In the first stage as usual we will import all the required libraries and do the data loading. In this project I will do data loading using the url obtained at the following link [YahooFinance]. After loading we will see the following output:
 
-![Gambar1](https://camo.githubusercontent.com/7ceb46cba92cb4b1630c68ff4aed47587609d795c8df890eae786c323a2e0bfd/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4c63433961557141614c615555435175485734307157544e494c38782d7479)
+![Figure 1](https://camo.githubusercontent.com/7ceb46cba92cb4b1630c68ff4aed47587609d795c8df890eae786c323a2e0bfd/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4c63433961557141614c615555435175485734307157544e494c38782d7479)
 
-Dari gambar diatas kita bisa lihat bahwa terdapat tanggal-tanggal yang hilang seperti tanggal 5 dan 6 January 2019. Jika kita lihat pada kalender, tanggal-tanggal yang hilang adalah tanggal mereka tidak buka (open) yaitu pada hari Sabtu dan Minggu. Selanjutnya kita bisa lihat informasi mengenai data pada dataset ini menggunakan code berikut:
+From the picture above, we can see that there are missing dates such as January 5 and 6 2019. If we look at the calendar, the missing dates are the dates they are not open, namely Saturday and Sunday. Next we can see information about the data in this dataset using the following code:
 
 ```
 df.info()
 ```
 
-Output:
+Outputs:
 
-![Gambar2](https://camo.githubusercontent.com/1ca87a6380679a316085772e4ee1558b2dd4e37f217b84e034a9aace7030723b/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4d52394e384c583268514633554b2d7235677055644d4d57724272536e376d)
+![Image2](https://camo.githubusercontent.com/1ca87a6380679a316085772e4ee1558b2dd4e37f217b84e034a9aace7030723b/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f4d52394e384c583268514633554b2d7235677055644d4d57724272536e376d)
 
-Kita bisa lihat bahwa dataset kita tidak memiliki null data. Data type untuk dataset ada tiga yaitu:
+We can see that our dataset has no null data. There are three data types for datasets, namely:
 
--   float64
--   int64
--   object
+- float64
+- int64
+- object
 
 ### Multivariate Analysis
 
-Setelah kita menangani outliers kita dapat melanjutkan ke tahap Data Analysis menggunakan Multivariate Analysis. Berikut adalah gambar Pairplot yang menunjukan relasi pasangan antar data dalam dataset.
+After we handle the outliers we can move on to the Data Analysis stage using Multivariate Analysis. The following is a Pairplot image that shows the pair relationship between data in the dataset.
 
 ![Gambar6](https://camo.githubusercontent.com/23ce454b84a285a4b9dbc55774f8401750df6704783ef34f53f64f7a1cce833a/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d315f75716f61516f63696344774e736a795f43633173776562416e304754345a6a)
 
-Dari grafik diatas kita bisa lihat bahwa column 'Open', 'High', dan 'Low' memiliki korelasi yang tinggi dengan output variabel kita, yaitu 'Adj Close'. Maka kita bisa drop column 'Volume', dan 'Close'. Alasannya adalah column Volume memiliki korelasi yang rendah sekali, dan column close tidak berguna karena outcome variabel kita adalah Adj Close . Perbedaan keduanya ada pada bagian variabel-variabel di atas.
+From the graph above, we can see that the 'Open', 'High', and 'Low' columns have a high correlation with our output variable, namely 'Adj Close'. Then we can drop the column 'Volume', and 'Close'. The reason is that the Volume column has a very low correlation, and the close column is useless because our outcome variable is Adj Close. The difference between the two is in the variables section above.
 
 ## Data Preparation
 
-Karena dataset ini tidak memiliki fitur kategori maka kita tidak perlu melakukan Data Transform.
+Because this dataset does not have a category feature, we do not need to perform a Data Transform.
 
-### Menangani Outliers
+### Handling Outliers
 
-Selanjutnya kita akan menggantikan nilai outlier dengan nilai Median pada data. Dikutip dari [03] tidak di rekomendasikan untuk menggantikannya dengan nilai Mean karena sangat rentan terhadap outlier. Ada beberapa teknik untuk menangani outliers, antara lain:
+Next we will assess the outlier value with the median value in the data. Quoted from [03] it is not recommended to remember it with a value that is very susceptible to outliers. There are several techniques for dealing with outliers, including:
 
--   Hypothesis Testing
--   Z-score method
--   IQR Method
+- Hypothesis test
+- Z-score method
+- IQR method
 
-Disini saya memilih untuk menggunakan IQR. Alasannya adalah saya lebih sering menggunakan metode ini dan juga dari metode yang digunakan pada [03] adalah metode IQR.
+Here I choose to use IQR. I am surprised that I use this method more often and also from the method used in [03] is the IQR method.
 
-## Data Spliting
+## Data Split
 
-Sebelum masuk ke tahap selanjutnya yaitu Data Transformation kita harus melakukan teknik train_test_split dari Library Scikit Learn agar tidak terjadi kebocoran data. Pada cell pertama saya akan melakukan split. Jumlah test_size yang saya gunakan adalah 15% alasan saya menggunakan 15% adalah jika kita menggunakan 20% data test akan ada sebanyak 154 yang berarti terlalu banyak untuk dataset yang kecil seperti ini. Paramter shuffle saya jadikan False agar data tetap dalam urutan waktu yang merupakan hal sangat penting. Untuk melakukannya dapat menulis code berikut:
+Before we go to the next stage, namely Data Transformation, we have to do the train_test_split technique from the Scikit Learn Library to avoid data leakage. In the first cell I will do a split. The number of test_size that I use is 15% the reason I use 15% is if we use 20% of the test data there will be 154 which is too much for a small dataset like this. Randomization of my parameters to keep the spurious data in chronological order which is very important.
 
-## Data Transformation
+## Data Transform
 
-Pada tahap ini saya akan melakukan Standarisasi. Untuk standarisai kita memiliki bebrapa pilihan, antara lain:
+At this stage I will do Standardization. For standardization, we have several options, including:
 
--   MinMaxScaler
--   StandardScaler
--   dll
+- MinMaxScaler
+- Standard Scale
+- etc
 
-Disini saya akan menggunakan StandardScaler. Dikutip dari [06] "MinMaxScaler adalah jenis scaler yang menskalakan nilai minimum dan maksimum masing-masing menjadi 0 dan 1. Sementara StandardScaler menskalakan semua nilai antara min dan max sehingga berada dalam kisaran dari min ke max". Itu lah alasan saya menggunakan StandardScaler.
+Here I will use StandardScaler. Quoted from [06] "MinMaxScaler is a type of scaler that scales the minimum and maximum values ​​to 0 and 1. That's the reason I use StandardScaler.
 
 ## Modeling
 
-Seperti yang disebutkan pada bagian Solution Statement Model ini akan menyelesaikan masalah regresi menggunakan beberapa algoritma antara lain, K-Nearest Neighbor, Random Forest, Boosting Algorithm, dan Neural Network. Model yang memiliki nilai error yang paling sedikit adalah model yang akan dipilih.
+As mentioned in the Solution Statement section, this model will solve the regression problem using several algorithms, including K-Nearest Neighbor, Random Forest, Boosting Algorithm, and Neural Network. The model that has the least error value is the model to be selected.
 
 ### Development
 
-Seperti yang telah sebutkan, saya akan menggunakan algoritma K-Nearest Neighbor, Random Forest, Boosting Algorithm, dan Neural Network. Pada cell pertama saya akan membuat DataFrame untuk tahap evaluation nanti. Pada tahap development saya akan menggunakan teknik GridSearchCV dari Library Scikit Learn pada model KNN, Random Forest, dan Boosting Algorithm, untuk menemukan hyperparamter yang tepat.
+As already mentioned, I will be using the K-Nearest Neighbor, Random Forest, Boosting Algorithm, and Neural Network algorithms. In the first cell I will create a DataFrame for the evaluation stage later. In the development stage I will use the GridSearchCV technique from the Scikit Learn Library on the KNN, Random Forest, and Boosting Algorithm models, to find the right hyperparamter.
 
 #### KNN
 
-Algoritma KNN bekerja dengan cara menentukan jumlah tetangga yang dinotasikan dengan K, kemudian algoritma akan menkalkulasi jarak antara data baru dengan data poin K. Selanjutnya adalah algoritma akan mengambil sejumlah nilai K terdekat, lalu menentukan kelas dari data baru tersebut.
+The KNN algorithm works by determining the number of neighbors denoted by K, then the algorithm will calculate the distance between the new data and K data points. Next is the algorithm will take a number of nearest K values, then determine the class of the new data.
 
-Dilihat dari [04], algoritma KNN secara default menggunakan metrik Minskowski, tetapi terdapat juga metrik yang lain yaitu Euclidean, dan Manhattan.
+Judging from [04], the KNN algorithm by default uses the Minskowski metric, but there are also other metrics, namely Euclidean, and Manhattan.
 
-Metrik Euclidean menghitung jaraknya sebagai akar kuadrat dari jumlah selisih kuadrat antara titik a dan b. Sedangkan Metrik Euclidean merupakan generalisasi dari Euclidean dan Manhattan distance. Lalu metrik manhattan dihitung dengan menkalkulasikan jumlah dari nilai absolute dua vektor. Semua itu dapat dituliskan sebagai berikut:
+The Euclidean metric calculates the distance as the square root of the sum of the differences in squares between points a and b. While the Euclidean metric is a generalization of Euclidean and Manhattan distance. Then the Manhattan metric is calculated by calculating the sum of the absolute values ​​of the two vectors. All of this can be written as follows:
 
-![Gambar7](https://www.saedsayad.com/images/KNN_similarity.png)
+![Image7](https://www.saedsayad.com/images/KNN_similarity.png)
 
-Sumber: https://saedsayad.com/k_nearest_neighbors_reg.htm
+Source: https://saedsayad.com/k_nearest_neighbors_reg.htm
 
-Jika kita lihat output pada fungsi '.best*params*', kita bisa lihat bahwa hyperparamter yang tepat untuk model KNN ini adalah 'brute' untuk algoritma, 'minkowski' untuk metrik, 10 untuk n_neighbors. Maka dari itu model KNN akan saya gunakan parameter tersebut. Paramter 'n_neighbors' menentukan banyaknya nilai K pada model kita. Paramter selanjutnya adalah 'algorithm', pada model ini saya menggunakan algoritma 'Brute'. Algoritma ini mengandalkan kekuatan komputasi, cara kerjanya adalah dengan mencoba setiap kemungkinan sehingga dapat meminimalisir jumlah error.
+If we look at the output of the '.best*params*' function, we can see that the correct hyperparamters for this KNN model are 'brute' for algorithms, 'minkowski' for metrics, 10 for n_neighbors. Therefore, I will use the KNN model for these parameters. The 'n_neighbors' parameter determines the number of K values ​​in our model. The next parameter is 'algorithm', in this model I use the 'Brute' algorithm. This algorithm relies on computational power, the way it works is by trying every possibility so as to minimize the number of errors.
 
 #### Random Forest
 
-Algoritma random forenst adalah salah satu algoritma supervised learning. Ia termasuk ke dalam kategori ensemble learning. Teknik untuk membuat model ensemble ada dua, yaitu bagging, dan boosting. Cara kerjanya cukup simple yaitu pertama-tama akan dilakukan pemecahan data (bagging) secara acak, setelah itu akan di masukan ke dalam algoritma decision tree. Untuk prediksi akhir dari model akan dilakukan kalkulasi rata-rata prediksi dari seluruh pohon dalam model ensemble, prediksi akhir dengan cara ini hanya berlaku pada kasus regresi. Pada kasus klasifikasi prediksi akhir akan diambil dari prediksi terbanyak pada seluruh pohon.
+The random forensics algorithm is one of the supervised learning algorithms. It belongs to the category of ensemble learning. There are two techniques for creating an ensemble model, namely bagging and boosting. The way it works is quite simple, namely, first random data bagging will be carried out, after that it will be input into the decision tree algorithm. For the final prediction of the model, the average prediction of all trees in the ensemble model will be calculated, the final prediction in this way only applies to the case of regression. In the case of classification, the final prediction will be taken from the most predictions in the entire tree.
 
-Berdasarkan output GridSearch parameter yang tepat adalah None untuk 'max_depth', dan 100 untuk 'n_estimators'. Paramter 'n_estimators' adalah jumlah pohon yang ada dalam forest, semakin banyak jumlah pohon akan memberikan kinerja model yang lebih baik. Salah satu kekurangan jumlah 'n_estimators' yang tinggi adalah membuat kode lebih lambat.
+Based on the GridSearch output the correct parameters are None for 'max_depth', and 100 for 'n_estimators'. The parameter 'n_estimators' is the number of trees in the forest, the more trees the better the model performance. One drawback of a high number of 'n_estimators' is that it makes code slower.
 
 #### Boosting Algorithm
 
-Boosting algorithm sama seperti random forest, yaitu sama-sama termasuk dalam kategori ensemble, bedanya adalah algoritma ini membuat model ensemble dengan cara boosting dibanding bagging. Pada model ensemble ini model akan dilatih secara berurutan dibanding secara pararel. Cara kerjanya juga cukup simple yaitu dengan membangun model dari data, lalu akan membuat model kedua yang bertujuan untuk memperbaiki kesalahan model pertama. Model akan terus ditambahkan sampai pada tahap data latih sudah terprediksi dengan baik atau telah mencapai batas maksimum model.
+The boosting algorithm is the same as the random forest, which is both included in the ensemble category, the difference is that this algorithm creates an ensemble model by means of boosting rather than bagging. In this ensemble model, the models will be trained sequentially rather than in parallel. The way it works is also quite simple, namely by building a model from the data, then creating a second model which aims to correct the errors of the first model. The model will continue to be added until the training data stage is well predicted or has reached the maximum model limit.
 
-Output dari GridSearch menunjukan bahwa hyperparamter yang tepat adalah 0.5 untuk 'learning_rate', dan untuk 76 'n_estimators'. Paramter 'n_estimators' seperti yang dijelaskan pada bagian Random Forest adalah jumlah pohon yang ada dalam forest. Semakin banyak jumlahnya maka akan memberikan kinerja mode yang lebih baik, kekurangannya adalah semakin tinggi jumlah pohon akan membuat kode lebih lambat. Parameter selanjutnya adalah 'learning_rate', parameter ini mengontrol loss function yang akan menkalkulasi weight dari base models yang ada, sehingga jumlah learning_rate yang pas akan memberikan performa yang lebih.
+The output of GridSearch shows that the correct hyperparamter is 0.5 for 'learning_rate', and 76 for 'n_estimators'. The parameter 'n_estimators' as described in the Random Forest section is the number of trees in the forest. The larger the number the better the model performance, the downside is that the higher the number of trees the slower the code. The next parameter is 'learning_rate', this parameter controls the loss function which will calculate the weight of the existing base models, so that the right amount of learning_rate will give more performance.
 
 #### Neural Network
 
-Neural Network adalah salah satu model yang populer digunakan. Model ini bekerja dengan adanya input layer, dan output layer, namun ada juga hidden layer. Pembahasan lebih lengkapnya tidak akan dibahas disini, tetapi dapat dilihat pada link berikut: [07]. Layer-layer tersebut dapat memiliki ratusan ribu parameter bahkan jutaan paramter. Namun agar model ini bekerja, layer-layer tersebut akan mencari pola-pola pada data.
+Neural Network is one of the popular models used. This model works with an input layer, and an output layer, but there is also a hidden layer. A more complete discussion will not be discussed here, but can be seen at the following link: [07]. These layers can have hundreds of thousands of parameters and even millions of parameters. But for this model to work, the layers will look for patterns in the data.
 
-Pada model Neural Network saya tidak memakai teknik GridSearch. Sehingga paramater yang saya rubah pada model yang sudah di fine tuning hanyalah paramter 'learning_rate' pada optimizer, dan jumlah 'epoch' pada bagian fungsi .fit(). Hal ini bertujuan agar saya bisa melihat perbedaan performa saat training, apakah jarak antara data asli dekat atau lumayan jauh. Epoch adalah melatih model Neural Network dengan data latih yang sama selama cycle yang ditentukan. Nah paramter 'epoch' pada fungsi .fit() ini menentukan jumlah cycle untuk melatih model.
+In the Neural Network model, I do not use the GridSearch technique. So the parameters that I change in the fine-tuned model are only the 'learning_rate' parameter in the optimizer, and the number of 'epochs' in the .fit() function. This is so that I can see the difference in performance during training, whether the distance between the original data is close or far enough. Epoch is training a Neural Network model with the same training data during a specified cycle. Now the 'epoch' parameter in the .fit() function determines the number of cycles to train the model.
 
 ## Evaluation
 
-Pada bagian metrik saya akan gunakan adalah MSE, pada kasus ini saya memilih metrik MSE. Alasan saya memilih metrik ini adalah karena MAE adalah skor linear, yang memiliki arti perbedaan individu antara data akan diberi bobot yang sama dalam rata-rata. Walaupun menurut beberapa sumber lebih baik memilih metrik RMSE, saya tetap memilih metrik MSE. Berdasarkan [05] MSE bekerja dengan melakukan pengurangan data aktual dengan data prediksi dan hasilnya dikuadratkan (squared) lalu dijumlahkan secara keseluruhan dan membaginya dengan banyaknya data.
+In the metric section, I will use MSE, in this case I choose the MSE metric. The reason I chose this metric is because MAE is a linear score, which means that individual differences between data will be given equal weight in the average. Although according to some sources it is better to choose the RMSE metric, I still choose the MSE metric. Based on [05] MSE works by subtracting the actual data with the predicted data and the results are squared (squared) and then totaled and divided by the number of data.
 
-![Gambar9](https://1.bp.blogspot.com/-BhCZ4B8uQqI/X-HjGU2kcsI/AAAAAAAACkQ/EdNE0ynOwDIR9RYD_uxRMhps2DFFs5jgQCNcBGAsYHQ/s364/rumus%2BMSE.jpg)
+![Image9](https://1.bp.blogspot.com/-BhCZ4B8uQqI/X-HjGU2kcsI/AAAAAAAACkQ/EdNE0ynOwDIR9RYD_uxRMhps2DFFs5jgQCNcBGAsYHQ/s364/formula%2BMSE.jpg)
 
-Sumber: https://www.khoiri.com/2020/12/pengertian-dan-cara-menghitung-mean-squared-error-mse.html
+Source: https://www.khoiri.com/2020/12/pengertian-dan-cara-hitung-mean-squared-error-mse.html
 
-Hasil evaluasi adalah sebagai berikut:
+The results of the evaluation are as follows:
 
-![Gambar10](https://camo.githubusercontent.com/0e7eb05d3ce601b45218310ac7eb793c8298254805eb6a74b3d23896bf99b8ce/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d316e6b79506f6d6f3062485669487a6f4c51635363596a67383539584877586e6a)
+![Figure10](https://camo.githubusercontent.com/0e7eb05d3ce601b45218310ac7eb793c8298254805eb6a74b3d23896bf99b8ce/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d316e6b79506f6d6f3062485669487a6f4c51635363596a67383539584877586e6a)
 
 ![Gambar11](https://camo.githubusercontent.com/a39d7f137c186dad1ed118e657dfe9e4f789d68f52b1d7d3ee2200d509e610c7/68747470733a2f2f64726976652e676f6f676c652e636f6d2f75633f6578706f72743d766965772669643d3161477a4d696a70624e695234686768676776756c2d4c733150475f6b534d526a)
 
-Dari grafik diatas kita bisa simpulkan bahwa model dengan algoritma KNN dan KNN yang sudah di fine tuning adalah model yang memiliki kinerja yang paling bagus, keduanya memiliki performa yang sama. Oleh karena itu kita bisa mengambil model KNNTune1 dan KNN, tetapi saya akan mengambil KNNTune1.
+From the graph above, we can conclude that the model with the KNN and KNN algorithms that have been fine-tuned is the model that has the best performance, both of which have the same performance. Therefore we can take the KNNTune1 and KNN models, but I will take KNNTune1.
 
-Setelah selesai melakukan semua proses, sekarang kita bisa menjawab permasalahan pada problem statement.
+After completing all the processes, now we can answer the problem in the problem statement.
 
--   Bagaimana persentase kenaikan harga emas dari periode January 2019 hingga 2022?
-    Kenaikan harga dari January hingga 2022 mencapai 34.6%! Atau sebesar 59.7 AUD.
+- What is the percentage increase in gold prices from January 2019 to 2022?
+    Price increase from January to 2022 reached 34.6%! Or 59.7 AUD.
 
--   Bagaimana harga emas untuk dikemudian hari?
-    Saya akan melakukan prediksi dengan Test set, hasil dari model cukup memuaskan dengan perbedaan harga sebesar 0.2 AUD! Dari data aslinya yaitu 229 AUD yang berarti model memprediksi harga emas sebesar 228.8 AUD.
+- How is the gold price for the future?
+    I will make predictions with the Test set, the results of the model are quite satisfied with a price difference of 0.2 AUD! The original data is 229 AUD which means the model predicts the gold price of 228.8 AUD.
 
--   Bagaimana rata-rata kenaikan harga emas setiap hari?
-    Rata-rata kenaikan harga emas per hari pada data kita mencapai sebesar 0.043%. Persentase kenaikan tersebut sangat sedikit hal ini di karenakan terdapat beberapa nilai yang mengalami penurunan. Penurunan pada harga emas adalah hal yang wajar/normal.
+- What is the average daily gold price increase?
+    The average daily increase in gold prices in our data is 0.043%. The percentage increase is very small, this is because there are several values ​​that have decreased. The decline in the price of gold is a natural thing / normal.
 
-**---Ini adalah bagian akhir laporan---**
+**All parts of this report are translated to English**
 
-## Referensi
+## Reference
 
 <br />[[yahoofinance]]ETFS Physical Gold (GOLD.AX) Stock Historical Prices & Data. (n.d.). Yahoo Finance. Retrieved January 10, 2022, from https://finance.yahoo.com/quote/GOLD.AX/history?period1=1546300800&period2=1641772800&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
 <br />[[01]]Cara Aman dan Waktu yang Tepat untuk Investasi Emas. (2021, October 2). CNN Indonesia. Retrieved January 10, 2022, from https://www.cnnindonesia.com/ekonomi/20210928113408-97-700375/cara-aman-dan-waktu-yang-tepat-untuk-investasi-emas
