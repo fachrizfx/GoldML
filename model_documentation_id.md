@@ -1,4 +1,7 @@
-# Laporan Proyek Machine Learning - Fachriz
+# Laporan Proyek Machine Learning
+Sumber daya proyek yang telah digunakan untuk membantu membangun model ini tercantum di bawah ini di area referensi. Silakan kutip halaman Repositori GitHub ini jika Anda menggunakan model kami sebagai referensi panduan. Gambar yang telah digunakan dalam penurunan harga ini mungkin tidak dapat dirender karena satu atau lain alasan, harap coba segarkan halaman untuk melihat gambar yang dirender.
+
+Model ini hanya membutuhkan satu masukan dari pengguna yaitu Open Price harga emas hari ini. Mata uang yang digunakan dalam model ini adalah AUD (Australian Dollar) ada untuk model ini hanya dapat digunakan untuk memprediksi harga Emas Australia dan tidak akan bekerja untuk harga emas negara lain.
 
 ## Domain Proyek
 
